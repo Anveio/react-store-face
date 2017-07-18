@@ -11,6 +11,6 @@ ReactDOM.render(
   <Router history={history}>
     <Route path="/" component={props => <App />} />
   </Router>,
-  document.getElementById('root') as HTMLElement
+  document.querySelector('#root') as HTMLElement
 );
 registerServiceWorker();

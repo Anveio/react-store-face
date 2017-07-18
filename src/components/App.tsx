@@ -4,7 +4,7 @@ import { Page } from '@shopify/polaris';
 
 import PageHeader from './Navigation/PageHeader';
 
-export default class App extends React.Component<{}, {}> {
+export default class App extends React.Component<{}, never> {
   render() {
     return (
       <main>
