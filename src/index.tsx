@@ -1,8 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import { Router, Route } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import '@shopify/polaris/styles.css';
+import history from './history';
 
-ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
+import App from './components/App';
+
+ReactDOM.render(
+  <Router history={history}>
+    <Route path="/" component={props => <App />} />
+  </Router>,
+  document.getElementById('root') as HTMLElement
+);
 registerServiceWorker();
