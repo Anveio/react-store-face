@@ -18,7 +18,7 @@ export default ({ path, text }: Props) => {
 
   return (
     <li>
-      <Link  to={formatUrl(path)}>
+      <Link to={formatUrl(path)}>
         {text || generateLinkText(path)}
       </Link>
     </li>

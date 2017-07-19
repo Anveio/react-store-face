@@ -13,6 +13,7 @@ export default class App extends React.PureComponent<{}, never> {
         <PageHeader account={false} />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/store/:id" />
           <Route exact path="/store-picker" component={StorePicker} />
           <Route path="" component={NotFound} />
         </Switch>
