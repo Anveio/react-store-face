@@ -8,18 +8,37 @@ interface State {
 
 export default class Inventory extends React.Component<{}, State> {
   readonly state = {
-    fishes: []
+    fishes: [
+      {
+        name: 'Marlin',
+        price: 32,
+        status: 'Available' as ItemStatus,
+        description: 'The greatest.',
+        imageSrc: 'google.com'
+      }
+    ]
   };
 
   handleNewFish = (newFish: Fish) => {
-    this.setState(prevState => {
-      return prevState.fishes.concat(newFish);
+    this.setState((prevState): Partial<State> => {
+      return {
+        fishes: [...prevState.fishes, newFish]
+      };
     });
-  }
+  };
 
   render() {
     return (
       <Layout.AnnotatedSection title="Inventory">
+        {this.state.fishes.map((fish: Fish, index: number) => {
+          return (
+            <Card sectioned title={`${fish.name}, $${fish.price}`} key={index}>
+              <p>
+                {fish.description}
+              </p>
+            </Card>
+          );
+        })}
         <Card sectioned>
           <AddFishForm onNewFish={this.handleNewFish} />
         </Card>

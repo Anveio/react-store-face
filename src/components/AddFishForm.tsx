@@ -11,9 +11,7 @@ export interface Props {
   onNewFish: (fish: Fish) => void;
 }
 
-interface State extends Fish {}
-
-export default class AddFishForm extends React.Component<Props, State> {
+export default class AddFishForm extends React.Component<Props, Fish> {
   constructor() {
     super();
     this.state = {
@@ -29,6 +27,15 @@ export default class AddFishForm extends React.Component<Props, State> {
 
   createFish = () => {
     this.props.onNewFish(this.state);
+    this.setState(() => {
+      return {
+        name: '',
+        price: 0,
+        status: 'Available',
+        description: '',
+        imageSrc: ''
+      };
+    });
   }; // tslint:disable-line:semicolon
 
   updateField = (key: keyof Fish) => (value: string) => {
