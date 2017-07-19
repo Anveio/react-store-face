@@ -12,9 +12,9 @@ export default class StorePicker extends React.PureComponent<{}, State> {
     text: getFunName()
   };
 
-  private visitStore = () => {
-    history.push(`/${this.state.text}`);
-  };
+  private visitStore() {
+    history.push(`/store/${this.state.text}`);
+  }
 
   public render() {
     return (
