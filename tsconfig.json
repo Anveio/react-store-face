@@ -20,13 +20,12 @@
   "exclude": [
     "node_modules",
     "build",
+    "src/test",
     "scripts",
     "acceptance-tests",
     "webpack",
     "jest",
     "src/setupTests.ts"
   ],
-  "types": [
-    "typePatches"
-  ]
+  "types": ["typePatches"]
 }

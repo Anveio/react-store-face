@@ -14,11 +14,7 @@ const LeftLogo = () => {
   );
 };
 
-const loggedOutLinks = [
-  { path: '/', text: 'home' },
-  { path: 'signup' },
-  { path: 'login' }
-];
+const loggedOutLinks = [{ path: '/', text: 'home' }, { path: 'store-picker' }];
 
 const loggedInLinks = [
   { path: '/', text: 'home' },

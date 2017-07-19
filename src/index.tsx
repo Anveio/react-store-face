@@ -9,7 +9,7 @@ import App from './components/App';
 
 ReactDOM.render(
   <Router history={history}>
-    <Route path="/" component={props => <App />} />
+    <Route path="" component={props => <App {...props} />} />
   </Router>,
   document.querySelector('#root') as HTMLElement
 );
