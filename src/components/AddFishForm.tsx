@@ -46,48 +46,56 @@ export default class AddFishForm extends React.Component<Props, Fish> {
     });
   }; // tslint:disable-line:semicolon
 
+  watchForEnter = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.charCode === 13) {
+      this.createFish();
+    }
+  }; // tslint:disable-line:semicolon
+
   render() {
     return (
       <FormLayout>
         <DisplayText size="medium">Add a new fish.</DisplayText>
-        <TextField
-          label="Name"
-          name="name"
-          id="add-fish-name"
-          onChange={this.updateField('name')}
-          value={this.state.name}
-        />
-        <TextField
-          type="number"
-          name="price"
-          id="add-fish-price"
-          prefix="$"
-          min={0}
-          max={9999}
-          label="Price"
-          onChange={this.updateField('price')}
-          value={this.state.price.toString()}
-        />
-        <Select
-          label="Status"
-          name="status"
-          options={this.options}
-          placeholder="Choose an availability"
-        />
-        <TextField
-          label="Description"
-          name="description"
-          id="add-fish-description"
-          onChange={this.updateField('description')}
-          value={this.state.description}
-        />
-        <TextField
-          label="Image URL"
-          name="image-url"
-          id="add-fish-image-url"
-          onChange={this.updateField('imageSrc')}
-          value={this.state.imageSrc}
-        />
+        <div onKeyPress={this.watchForEnter}>
+          <TextField
+            label="Name"
+            name="name"
+            id="add-fish-name"
+            onChange={this.updateField('name')}
+            value={this.state.name}
+          />
+          <TextField
+            type="number"
+            name="price"
+            id="add-fish-price"
+            prefix="$"
+            min={0}
+            max={9999}
+            label="Price"
+            onChange={this.updateField('price')}
+            value={this.state.price.toString()}
+          />
+          <Select
+            label="Status"
+            name="status"
+            options={this.options}
+            placeholder="Choose an availability"
+          />
+          <TextField
+            label="Description"
+            name="description"
+            id="add-fish-description"
+            onChange={this.updateField('description')}
+            value={this.state.description}
+          />
+          <TextField
+            label="Image URL"
+            name="image-url"
+            id="add-fish-image-url"
+            onChange={this.updateField('imageSrc')}
+            value={this.state.imageSrc}
+          />
+        </div>
         <Button primary submit icon="add" onClick={this.createFish}>
           Add
         </Button>

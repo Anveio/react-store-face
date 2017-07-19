@@ -25,7 +25,7 @@ export default class Inventory extends React.Component<{}, State> {
         fishes: [...prevState.fishes, newFish]
       };
     });
-  };
+  }; // tslint:disable-line:semicolon
 
   render() {
     return (
