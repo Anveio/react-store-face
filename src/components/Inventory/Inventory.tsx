@@ -10,13 +10,9 @@ interface State {
   formActive: boolean;
 }
 
-const loadSampleData = (): Fish[] => {
-  return Object.keys(sampleData).map(fish => sampleData[fish]);
-};
-
 export default class Inventory extends React.Component<{}, State> {
   readonly state = {
-    fishes: loadSampleData(),
+    fishes: sampleData,
     formActive: false
   };
 

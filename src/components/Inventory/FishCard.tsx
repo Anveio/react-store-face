@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card, Thumbnail, Stack, DestructableAction } from '@shopify/polaris';
+import { Card, Thumbnail, Stack } from '@shopify/polaris';
 
 import { formatPrice } from '../../utils';
 
@@ -8,21 +8,27 @@ export interface Props {
 }
 
 export default ({ fish }: Props) => {
-  const { name, price, imageSrc, description } = fish;
+  const { name, price, imageSrc, description, status } = fish;
 
-  const deleteAction = {
-    content: 'Delete',
-    destructive: true
-  } as DestructableAction;
+  const available = status === 'Available' ? true : false;
+
+  const addAction = {
+    content: available ? 'Add to order' : 'Sold out',
+    destructive: !available
+  };
 
   return (
     <Card
       sectioned
       title={`${name}, ${formatPrice(price)}`}
-      secondaryFooterAction={deleteAction}
+      primaryFooterAction={addAction}
     >
       <Stack>
-        <Thumbnail source={imageSrc} alt={name + ': ' + description} />
+        <Thumbnail
+          source={imageSrc}
+          alt={name + ': ' + description}
+          size="large"
+        />
         <p>
           {fish.description}
         </p>
