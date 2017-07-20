@@ -1,3 +1,5 @@
+import sampleData from './sampleData';
+
 const formatPrice = (cents: number) => {
   return `$${(cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
 };
@@ -94,4 +96,4 @@ const getFunName = () => {
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 };
 
-export { formatPrice, slugify, getFunName };
+export { formatPrice, slugify, getFunName, sampleData };

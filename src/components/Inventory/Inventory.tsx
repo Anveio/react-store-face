@@ -1,24 +1,29 @@
 import * as React from 'react';
-import { Layout, Card, Button } from '@shopify/polaris';
+import { Layout, Card, Button, Stack } from '@shopify/polaris';
 import AddFishForm from './AddFishForm';
+import FishCard from './FishCard';
+
+import { sampleData } from '../../utils';
 
 interface State {
   fishes: Fish[];
   formActive: boolean;
 }
 
+const loadSampleData = (): Fish[] => {
+  return Object.keys(sampleData).map(fish => sampleData[fish]);
+};
+
 export default class Inventory extends React.Component<{}, State> {
   readonly state = {
-    fishes: [
-      {
-        name: 'Marlin',
-        price: 32,
-        status: 'Available' as ItemStatus,
-        description: 'The greatest.',
-        imageSrc: 'google.com'
-      }
-    ],
+    fishes: loadSampleData(),
     formActive: false
+  };
+
+  generateFishList = () => {
+    return this.state.fishes.map((fish: Fish, index: number) =>
+      <FishCard fish={fish} key={index} />
+    );
   };
 
   handleNewFish = (newFish: Fish) => {
@@ -56,19 +61,12 @@ export default class Inventory extends React.Component<{}, State> {
   render() {
     return (
       <Layout.AnnotatedSection title="Inventory">
-        {this.state.formActive
-          ? this.formActiveMarkup()
-          : this.formInactiveMarkup()}
-        <br />
-        {this.state.fishes.map((fish: Fish, index: number) => {
-          return (
-            <Card sectioned title={`${fish.name}, $${fish.price}`} key={index}>
-              <p>
-                {fish.description}
-              </p>
-            </Card>
-          );
-        })}
+        <Stack vertical={true}>
+          {this.state.formActive
+            ? this.formActiveMarkup()
+            : this.formInactiveMarkup()}
+          {this.generateFishList()}
+        </Stack>
       </Layout.AnnotatedSection>
     );
   }
