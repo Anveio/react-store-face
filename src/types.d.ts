@@ -7,3 +7,8 @@ interface Fish {
   description: string;
   imageSrc: string;
 }
+
+interface CartItem {
+  fish: Fish;
+  quantity: number;
+}

@@ -1,14 +1,30 @@
 import * as React from 'react';
-import Order from './Order';
+import Cart from './Cart/Cart';
 import Inventory from './Inventory/Inventory';
 import { Page } from '@shopify/polaris';
 
-export default class App extends React.PureComponent<{}, never> {
+interface State {
+  cart: CartItem[];
+}
+
+export default class App extends React.PureComponent<{}, State> {
+  state = {
+    cart: []
+  };
+
+  addToCart = (item: CartItem) => {
+    this.setState((prevState: State): Partial<State> => {
+      return {
+        cart: [...prevState.cart, item]
+      };
+    });
+  };
+
   render() {
     return (
       <Page title="Catch of the Day">
-        <Order />
-        <Inventory />
+        <Cart items={this.state.cart} />
+        <Inventory handleAddToCart={this.addToCart} />
       </Page>
     );
   }

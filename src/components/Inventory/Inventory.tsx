@@ -10,16 +10,26 @@ interface State {
   formActive: boolean;
 }
 
-export default class Inventory extends React.Component<{}, State> {
+interface Props {
+  handleAddToCart: (item: CartItem) => void;
+}
+
+export default class Inventory extends React.Component<Props, State> {
   readonly state = {
     fishes: sampleData,
     formActive: false
   };
 
   generateFishList = () => {
-    return this.state.fishes.map((fish: Fish, index: number) =>
-      <FishCard fish={fish} key={index} />
-    );
+    return this.state.fishes.map((fish: Fish, index: number) => {
+      return (
+        <FishCard
+          fish={fish}
+          primaryAction={this.props.handleAddToCart}
+          key={index}
+        />
+      );
+    });
   };
 
   handleNewFish = (newFish: Fish) => {
@@ -28,7 +38,7 @@ export default class Inventory extends React.Component<{}, State> {
         fishes: [...prevState.fishes, newFish]
       };
     });
-  }; // tslint:disable-line:semicolon
+  };
 
   formActiveMarkup = () => {
     return (

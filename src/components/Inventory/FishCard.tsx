@@ -5,23 +5,37 @@ import { formatPrice } from '../../utils';
 
 export interface Props {
   fish: Fish;
+  primaryAction: (item: CartItem) => void;
 }
 
-export default ({ fish }: Props) => {
+export default ({ fish, primaryAction }: Props) => {
   const { name, price, imageSrc, description, status } = fish;
 
   const available = status === 'Available' ? true : false;
 
+  const onPrimaryAction = () => {
+    primaryAction({
+      fish,
+      quantity: 1
+    });
+  };
+
   const addAction = {
-    content: available ? 'Add to order' : 'Sold out',
-    destructive: !available
+    content: 'Add to cart',
+    onAction: onPrimaryAction
+  };
+
+  const unavailableAction = {
+    content: 'Sold out',
+    destructive: true
   };
 
   return (
     <Card
       sectioned
       title={`${name}, ${formatPrice(price)}`}
-      primaryFooterAction={addAction}
+      primaryFooterAction={available ? addAction : unavailableAction}
+      subdued={!available}
     >
       <Stack>
         <Thumbnail
