@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Page, Layout, FormLayout, TextField, Button } from '@shopify/polaris';
 import { getFunName } from '../utils';
-import history from '../history';
+import { Link } from 'react-router-dom';
 
 export interface State {
   text: string;
@@ -11,10 +11,6 @@ export default class StorePicker extends React.PureComponent<{}, State> {
   readonly state = {
     text: getFunName()
   };
-
-  private visitStore() {
-    history.push(`/store/${this.state.text}`);
-  }
 
   public render() {
     return (
@@ -26,9 +22,11 @@ export default class StorePicker extends React.PureComponent<{}, State> {
               value={this.state.text}
               placeholder="e.g. The Hungry Harbor"
             />
-            <Button primary submit onClick={this.visitStore}>
-              Visit Store
-            </Button>
+            <Link to={this.state.text}>
+              <Button primary submit>
+                Visit Store
+              </Button>
+            </Link>
           </FormLayout>
         </Layout.AnnotatedSection>
       </Page>
