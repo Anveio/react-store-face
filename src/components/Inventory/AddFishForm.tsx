@@ -4,11 +4,13 @@ import {
   DisplayText,
   TextField,
   Select,
+  ButtonGroup,
   Button
 } from '@shopify/polaris';
 
 export interface Props {
   onNewFish: (fish: Fish) => void;
+  onClose: () => void;
 }
 
 export default class AddFishForm extends React.Component<Props, Fish> {
@@ -36,7 +38,7 @@ export default class AddFishForm extends React.Component<Props, Fish> {
         imageSrc: ''
       };
     });
-  }; // tslint:disable-line:semicolon
+  };
 
   updateField = (key: keyof Fish) => (value: string) => {
     this.setState(() => {
@@ -44,13 +46,13 @@ export default class AddFishForm extends React.Component<Props, Fish> {
         [key]: value
       };
     });
-  }; // tslint:disable-line:semicolon
+  };
 
   watchForEnter = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.charCode === 13) {
       this.createFish();
     }
-  }; // tslint:disable-line:semicolon
+  };
 
   render() {
     return (
@@ -96,9 +98,12 @@ export default class AddFishForm extends React.Component<Props, Fish> {
             value={this.state.imageSrc}
           />
         </div>
-        <Button primary submit icon="add" onClick={this.createFish}>
-          Add
-        </Button>
+        <ButtonGroup>
+          <Button primary submit icon="add" onClick={this.createFish}>
+            Add
+          </Button>
+          <Button onClick={this.props.onClose}>Done</Button>
+        </ButtonGroup>
       </FormLayout>
     );
   }

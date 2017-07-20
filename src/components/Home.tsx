@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Order from './Order';
-import Inventory from './Inventory';
+import Inventory from './Inventory/Inventory';
 import { Page } from '@shopify/polaris';
 
 export default class App extends React.PureComponent<{}, never> {

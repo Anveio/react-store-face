@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Layout, Card } from '@shopify/polaris';
+import { Layout, Card, Button } from '@shopify/polaris';
 import AddFishForm from './AddFishForm';
 
 interface State {
   fishes: Fish[];
+  formActive: boolean;
 }
 
 export default class Inventory extends React.Component<{}, State> {
@@ -16,7 +17,8 @@ export default class Inventory extends React.Component<{}, State> {
         description: 'The greatest.',
         imageSrc: 'google.com'
       }
-    ]
+    ],
+    formActive: false
   };
 
   handleNewFish = (newFish: Fish) => {
@@ -27,9 +29,37 @@ export default class Inventory extends React.Component<{}, State> {
     });
   }; // tslint:disable-line:semicolon
 
+  formActiveMarkup = () => {
+    return (
+      <AddFishForm onNewFish={this.handleNewFish} onClose={this.toggleForm} />
+    );
+  };
+
+  formInactiveMarkup = () => {
+    return (
+      <Card sectioned>
+        <Button primary onClick={this.toggleForm}>
+          Add new fish.
+        </Button>
+      </Card>
+    );
+  };
+
+  toggleForm = () => {
+    this.setState((prevState): Partial<State> => {
+      return {
+        formActive: !prevState.formActive
+      };
+    });
+  };
+
   render() {
     return (
       <Layout.AnnotatedSection title="Inventory">
+        {this.state.formActive
+          ? this.formActiveMarkup()
+          : this.formInactiveMarkup()}
+        <br />
         {this.state.fishes.map((fish: Fish, index: number) => {
           return (
             <Card sectioned title={`${fish.name}, $${fish.price}`} key={index}>
@@ -39,9 +69,6 @@ export default class Inventory extends React.Component<{}, State> {
             </Card>
           );
         })}
-        <Card sectioned>
-          <AddFishForm onNewFish={this.handleNewFish} />
-        </Card>
       </Layout.AnnotatedSection>
     );
   }
