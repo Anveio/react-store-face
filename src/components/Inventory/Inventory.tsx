@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Layout, Card, Button, Stack, ResourceList } from '@shopify/polaris';
+import { Layout, Card, Button, Stack } from '@shopify/polaris';
 import AddFishForm from './AddFishForm';
-import FishCard from './FishCard';
+import FishList from './FishList';
 
 import { sampleData } from '../../utils';
 
@@ -18,23 +18,6 @@ export default class Inventory extends React.Component<Props, State> {
   readonly state = {
     fishes: sampleData,
     formActive: false
-  };
-
-  generateFishList = () => {
-    return (
-      <ResourceList
-        items={this.state.fishes}
-        renderItem={(fish: Fish, index: number) => {
-          return (
-            <FishCard
-              fish={fish}
-              primaryAction={this.props.handleAddToCart}
-              key={index}
-            />
-          );
-        }}
-      />
-    );
   };
 
   handleNewFish = (newFish: Fish) => {
@@ -76,7 +59,10 @@ export default class Inventory extends React.Component<Props, State> {
           {this.state.formActive
             ? this.formActiveMarkup()
             : this.formInactiveMarkup()}
-          {this.generateFishList()}
+          <FishList
+            fishes={this.state.fishes}
+            addToCart={this.props.handleAddToCart}
+          />
         </Stack>
       </Layout.AnnotatedSection>
     );
