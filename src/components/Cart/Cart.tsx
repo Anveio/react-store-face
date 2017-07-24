@@ -16,7 +16,7 @@ interface Props {
   items: CartItem[];
 }
 
-export default ({ items }: Props) => {
+const Cart = ({ items }: Props) => {
   const emptyCartMarkup = () => {
     return (
       <EmptyState
@@ -56,3 +56,5 @@ export default ({ items }: Props) => {
     </Layout.AnnotatedSection>
   );
 };
+
+export default Cart;

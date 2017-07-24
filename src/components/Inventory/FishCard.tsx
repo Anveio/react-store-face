@@ -8,7 +8,7 @@ export interface Props {
   primaryAction: (item: CartItem) => void;
 }
 
-export default ({ fish, primaryAction }: Props) => {
+const FishCard = ({ fish, primaryAction }: Props) => {
   const { name, price, imageSrc, description, status } = fish;
 
   const available = status === 'Available' ? true : false;
@@ -50,3 +50,5 @@ export default ({ fish, primaryAction }: Props) => {
     </Card>
   );
 };
+
+export default FishCard;

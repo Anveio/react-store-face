@@ -6,7 +6,7 @@ interface Props {
   text?: string;
 }
 
-export default ({ path, text }: Props) => {
+const NavbarLink = ({ path, text }: Props) => {
   const formatUrl = (url: string): string => {
     return url[0] === '/' ? url : '/' + url;
   };
@@ -24,3 +24,5 @@ export default ({ path, text }: Props) => {
     </li>
   );
 };
+
+export default NavbarLink;

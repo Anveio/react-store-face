@@ -27,7 +27,7 @@ interface Props {
   account: boolean;
 }
 
-export default ({ account }: Props) => {
+const PageHeader = ({ account }: Props) => {
   return (
     <header>
       <div className="Navbar-container">
@@ -37,3 +37,5 @@ export default ({ account }: Props) => {
     </header>
   );
 };
+
+export default PageHeader;
