@@ -8,15 +8,21 @@ const emptyState = require('../Navigation/empty-state.svg');
 
 interface Props {
   readonly cart: Map<Item, number>;
+  onBrowse: (tabIndex: number) => void;
 }
 
-const Cart = ({ cart }: Props) => {
+const Cart = ({ cart, onBrowse }: Props) => {
+  const switchToInventoryTab = () => {
+    onBrowse(0);
+  };
+
   const emptyCartMarkup = () => {
     return (
       <EmptyState
         heading="You have no items in your cart."
         image={emptyState}
         action={{
+          onAction: switchToInventoryTab,
           content: 'Browse items'
         }}
       >
