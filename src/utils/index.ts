@@ -100,7 +100,7 @@ const cartListFromMap = (input: Map<Item, number>): CartEntry<Item>[] => {
   return Array.from(input.keys()).map(item => {
     return {
       item: item,
-      quantity: input.get(item)
+      quantity: input.get(item) || 0
     };
   });
 };

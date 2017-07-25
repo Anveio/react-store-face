@@ -16,6 +16,9 @@ const CartListItem = ({ entry }: Props) => {
         <p>
           {name} : {formatPrice(price)}
         </p>
+        <p>
+          Quantity: {entry.quantity}
+        </p>
       </Stack>
     </Card>
   );

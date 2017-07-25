@@ -10,6 +10,7 @@ interface Fish {
 
 interface CartEntry<T extends Item> {
   item: T;
+  quantity: number;
 }
 
 type Item = Fish;
