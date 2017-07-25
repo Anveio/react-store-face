@@ -40,6 +40,14 @@ export default class Home extends React.PureComponent<{}, State> {
     });
   };
 
+  private readonly changeItemQuantity = (item: Item, quantity: number) => {
+    this.setState((prevState: State): Partial<State> => {
+      const newCart = new Map<Item, number>(prevState.cart);
+      newCart.set(item, quantity);
+      return { cart: newCart };
+    });
+  };
+
   private readonly changeTab = (tabIndex: number) => {
     this.setState((prevState: State): Partial<State> => {
       return {
@@ -56,7 +64,13 @@ export default class Home extends React.PureComponent<{}, State> {
       case 0:
         return <Inventory handleAddToCart={this.addToCart} />;
       case 1:
-        return <Cart cart={cart} onTabChange={this.changeTab} />;
+        return (
+          <Cart
+            cart={cart}
+            onTabChange={this.changeTab}
+            onNewQuant={this.changeItemQuantity}
+          />
+        );
       default:
         return;
     }
