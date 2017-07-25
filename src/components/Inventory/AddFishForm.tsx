@@ -13,21 +13,18 @@ export interface Props {
   readonly onClose: () => void;
 }
 
+const options: ItemStatus[] = ['Available', 'Unavailable'];
+
 export default class AddFishForm extends React.Component<Props, Fish> {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      price: 0,
-      status: 'Available',
-      description: '',
-      imageSrc: ''
-    };
-  }
+  readonly state: Fish = {
+    name: '',
+    price: 0,
+    status: 'Available',
+    description: '',
+    imageSrc: ''
+  };
 
-  readonly options: ItemStatus[] = ['Available', 'Unavailable'];
-
-  createFish = () => {
+  private readonly createFish = () => {
     this.props.onNewFish(this.state);
     this.setState((): Partial<Fish> => {
       return {
@@ -40,7 +37,7 @@ export default class AddFishForm extends React.Component<Props, Fish> {
     });
   };
 
-  updateField = (key: keyof Fish) => (value: string) => {
+  private readonly updateField = (key: keyof Fish) => (value: string) => {
     this.setState(() => {
       return {
         [key]: value
@@ -48,13 +45,13 @@ export default class AddFishForm extends React.Component<Props, Fish> {
     });
   };
 
-  watchForEnter = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  private readonly watchForEnter = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.charCode === 13) {
       this.createFish();
     }
   };
 
-  render() {
+  public render() {
     return (
       <FormLayout>
         <DisplayText size="medium">Add a new fish.</DisplayText>
@@ -81,7 +78,7 @@ export default class AddFishForm extends React.Component<Props, Fish> {
           <Select
             label="Status"
             name="status"
-            options={this.options}
+            options={options}
             placeholder="Choose an availability"
           />
           <TextField

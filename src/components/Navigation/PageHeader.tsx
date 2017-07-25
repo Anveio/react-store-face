@@ -24,7 +24,7 @@ const loggedInLinks = [
 ];
 
 interface Props {
-  account: boolean;
+  readonly account: boolean;
 }
 
 const PageHeader = ({ account }: Props) => {

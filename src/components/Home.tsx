@@ -15,13 +15,24 @@ interface TabDescriptor {
   readonly panelID?: string;
 }
 
+const tabInformation = (cartSize: number): TabDescriptor[] => [
+  {
+    id: 'inventory',
+    title: 'Inventory'
+  },
+  {
+    id: 'cart',
+    title: `Cart (${cartSize})`
+  }
+];
+
 export default class Home extends React.PureComponent<{}, State> {
   readonly state = {
     cart: new Map<Item, number>(),
     currentTabIndex: 0
   };
 
-  addToCart = (item: Item) => {
+  private readonly addToCart = (item: Item) => {
     this.setState((prevState: State): Partial<State> => {
       const newCart = new Map<Item, number>(prevState.cart);
       newCart.set(item, (prevState.cart.get(item) || 0) + 1);
@@ -29,7 +40,7 @@ export default class Home extends React.PureComponent<{}, State> {
     });
   };
 
-  changeTab = (tabIndex: number) => {
+  private readonly changeTab = (tabIndex: number) => {
     this.setState((prevState: State): Partial<State> => {
       return {
         ...prevState,
@@ -38,35 +49,24 @@ export default class Home extends React.PureComponent<{}, State> {
     });
   };
 
-  tabInformation = (): TabDescriptor[] => [
-    {
-      id: 'inventory',
-      title: 'Inventory'
-    },
-    {
-      id: 'cart',
-      title: `Cart (${this.state.cart.size})`
-    }
-  ];
-
-  tabComponentLookup = () => {
+  private readonly tabComponentLookup = () => {
     const { currentTabIndex, cart } = this.state;
 
     switch (currentTabIndex) {
       case 0:
         return <Inventory handleAddToCart={this.addToCart} />;
       case 1:
-        return <Cart cart={cart} onBrowse={this.changeTab} />;
+        return <Cart cart={cart} onTabChange={this.changeTab} />;
       default:
         return;
     }
   };
 
-  render() {
+  public render() {
     return (
       <Page title="Catch of the Day">
         <Tabs
-          tabs={this.tabInformation()}
+          tabs={tabInformation(this.state.cart.size)}
           selected={this.state.currentTabIndex}
           onSelect={this.changeTab}
         />

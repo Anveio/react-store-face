@@ -7,7 +7,7 @@ import Home from './Home';
 import NotFound from './Navigation/NotFound';
 
 export default class App extends React.PureComponent<{}, never> {
-  render() {
+  public render() {
     return (
       <main>
         <PageHeader account={false} />

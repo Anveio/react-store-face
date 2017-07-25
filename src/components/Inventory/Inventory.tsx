@@ -11,8 +11,7 @@ interface State {
 }
 
 interface Props {
-  handleAddToCart: (item: Item) => void;
-  
+  readonly handleAddToCart: (item: Item) => void;
 }
 
 export default class Inventory extends React.Component<Props, State> {
@@ -21,7 +20,7 @@ export default class Inventory extends React.Component<Props, State> {
     formActive: false
   };
 
-  handleNewFish = (newFish: Fish) => {
+  private readonly handleNewFish = (newFish: Fish) => {
     this.setState((prevState): Partial<State> => {
       return {
         fishes: [...prevState.fishes, newFish]
@@ -29,13 +28,13 @@ export default class Inventory extends React.Component<Props, State> {
     });
   };
 
-  formActiveMarkup = () => {
+  private readonly formActiveMarkup = () => {
     return (
       <AddFishForm onNewFish={this.handleNewFish} onClose={this.toggleForm} />
     );
   };
 
-  formInactiveMarkup = () => {
+  private readonly formInactiveMarkup = () => {
     return (
       <Card sectioned>
         <Button primary onClick={this.toggleForm}>
@@ -45,7 +44,7 @@ export default class Inventory extends React.Component<Props, State> {
     );
   };
 
-  toggleForm = () => {
+  private readonly toggleForm = () => {
     this.setState((prevState): Partial<State> => {
       return {
         formActive: !prevState.formActive
@@ -53,7 +52,7 @@ export default class Inventory extends React.Component<Props, State> {
     });
   };
 
-  render() {
+  public render() {
     return (
       <Layout.AnnotatedSection title="Inventory">
         <Stack vertical={true}>

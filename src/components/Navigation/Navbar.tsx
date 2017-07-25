@@ -7,7 +7,7 @@ interface LinkInfo {
 }
 
 interface Props {
-  links: LinkInfo[];
+  readonly links: LinkInfo[];
 }
 
 const Navbar = ({ links }: Props) => {
