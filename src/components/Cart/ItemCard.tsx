@@ -14,7 +14,7 @@ const CartListItem = ({ entry }: Props) => {
       <Stack>
         <Thumbnail source={imageSrc} alt={description} size="small" />
         <p>
-          {name} : {formatPrice(price)}
+          {name} : {formatPrice(price * entry.quantity)}
         </p>
         <p>
           Quantity: {entry.quantity}

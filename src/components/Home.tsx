@@ -8,12 +8,9 @@ interface State {
 }
 
 export default class Home extends React.PureComponent<{}, State> {
-  constructor() {
-    super();
-    this.state = {
-      cart: new Map<Item, number>()
-    };
-  }
+  readonly state = {
+    cart: new Map<Item, number>()
+  };
 
   addToCart = (item: Item) => {
     this.setState((prevState: State): Partial<State> => {

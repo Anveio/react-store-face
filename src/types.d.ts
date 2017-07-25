@@ -8,6 +8,10 @@ interface Fish {
   imageSrc: string;
 }
 
+interface Clothing {
+  
+}
+
 interface CartEntry<T extends Item> {
   item: T;
   quantity: number;

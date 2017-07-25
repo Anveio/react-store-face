@@ -96,6 +96,12 @@ const getFunName = () => {
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 };
 
+/**
+ * Converts a Map object into an array containing objects.
+ * Each object has two properties. One is the actual item (the key of the map property).
+ * The other is the quantity of the item (the value of the map property) 
+ * @param input 
+ */
 const cartListFromMap = (input: Map<Item, number>): CartEntry<Item>[] => {
   return Array.from(input.keys()).map(item => {
     return {
@@ -105,4 +111,23 @@ const cartListFromMap = (input: Map<Item, number>): CartEntry<Item>[] => {
   });
 };
 
-export { formatPrice, slugify, getFunName, sampleData, cartListFromMap };
+/**
+ * Returns the total price of a CartEntry<Item>[].
+ * @param input 
+ */
+const cartTotalPrice = (input: CartEntry<Item>[]): number => {
+  const summation = (total: number, entry: CartEntry<Item>) => {
+    return (total += entry.quantity * entry.item.price);
+  };
+
+  return input.reduce(summation, 0);
+};
+
+export {
+  formatPrice,
+  slugify,
+  getFunName,
+  sampleData,
+  cartListFromMap,
+  cartTotalPrice
+};
