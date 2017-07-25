@@ -7,7 +7,7 @@ import { cartListFromMap } from '../../utils';
 const emptyState = require('../Navigation/empty-state.svg');
 
 interface Props {
-  cart: Map<CartEntry<Fish>, number>;
+  readonly cart: Map<Item, number>;
 }
 
 const Cart = ({ cart }: Props) => {

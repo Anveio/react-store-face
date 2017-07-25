@@ -4,18 +4,22 @@ import Inventory from './Inventory/Inventory';
 import { Page } from '@shopify/polaris';
 
 interface State {
-  cart: Map<CartEntry<Fish>, number>;
+  readonly cart: Map<Item, number>;
 }
 
 export default class Home extends React.PureComponent<{}, State> {
-  state = {
-    cart: new Map<CartEntry<Fish>, number>()
-  };
+  constructor() {
+    super();
+    this.state = {
+      cart: new Map<Item, number>()
+    };
+  }
 
-  addToCart = (item: CartEntry<Item>) => {
+  addToCart = (item: Item) => {
     this.setState((prevState: State): Partial<State> => {
-      prevState.cart.set(item, (prevState.cart.get(item) || 0) + 1);
-      return { ...prevState };
+      const newCart = new Map<Item, number>(prevState.cart);
+      newCart.set(item, (prevState.cart.get(item) || 0) + 1);
+      return { cart: newCart };
     });
   };
 

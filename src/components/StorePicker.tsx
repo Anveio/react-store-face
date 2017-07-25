@@ -4,7 +4,7 @@ import { getFunName } from '../utils';
 import { Link } from 'react-router-dom';
 
 export interface State {
-  text: string;
+  readonly text: string;
 }
 
 export default class StorePicker extends React.PureComponent<{}, State> {

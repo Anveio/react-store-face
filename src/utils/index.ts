@@ -96,11 +96,11 @@ const getFunName = () => {
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 };
 
-const cartListFromMap = (input: Map<CartEntry<Fish>, number>): CartEntry<Item>[] => {
-  return Array.from(input.keys()).map((el: CartEntry<Item>) => {
+const cartListFromMap = (input: Map<Item, number>): CartEntry<Item>[] => {
+  return Array.from(input.keys()).map(item => {
     return {
-      item: el.item,
-      quantity: 1
+      item: item,
+      quantity: input.get(item)
     };
   });
 };

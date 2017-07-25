@@ -6,12 +6,12 @@ import FishList from './FishList';
 import { sampleData } from '../../utils';
 
 interface State {
-  fishes: Fish[];
-  formActive: boolean;
+  readonly fishes: Fish[];
+  readonly formActive: boolean;
 }
 
 interface Props {
-  handleAddToCart: (item: CartEntry<Fish>) => void;
+  handleAddToCart: (item: Item) => void;
 }
 
 export default class Inventory extends React.Component<Props, State> {

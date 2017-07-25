@@ -9,8 +9,8 @@ import {
 } from '@shopify/polaris';
 
 export interface Props {
-  onNewFish: (fish: Fish) => void;
-  onClose: () => void;
+  readonly onNewFish: (fish: Fish) => void;
+  readonly onClose: () => void;
 }
 
 export default class AddFishForm extends React.Component<Props, Fish> {
@@ -60,6 +60,7 @@ export default class AddFishForm extends React.Component<Props, Fish> {
         <DisplayText size="medium">Add a new fish.</DisplayText>
         <div onKeyPress={this.watchForEnter}>
           <TextField
+            autoFocus
             label="Name"
             name="name"
             id="add-fish-name"

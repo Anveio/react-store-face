@@ -4,8 +4,8 @@ import { Card, Thumbnail, Stack } from '@shopify/polaris';
 import { formatPrice } from '../../utils';
 
 export interface Props {
-  fish: Fish;
-  onAddToCart: (item: CartEntry<Fish>) => void;
+  readonly fish: Fish;
+  readonly onAddToCart: (item: Fish) => void;
 }
 
 const FishCard = ({ fish, onAddToCart }: Props) => {
@@ -14,7 +14,7 @@ const FishCard = ({ fish, onAddToCart }: Props) => {
   const available = status === 'Available' ? true : false;
 
   const onPrimaryAction = () => {
-    onAddToCart({ item: fish });
+    onAddToCart(fish);
   };
 
   const addAction = {

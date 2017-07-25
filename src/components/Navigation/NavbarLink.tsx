@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 interface Props {
-  path: string;
-  text?: string;
+  readonly path: string;
+  readonly text?: string;
 }
 
 const NavbarLink = ({ path, text }: Props) => {

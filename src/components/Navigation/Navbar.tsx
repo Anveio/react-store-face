@@ -2,8 +2,8 @@ import * as React from 'react';
 import NavbarLink from './NavbarLink';
 
 interface LinkInfo {
-  path: string;
-  text?: string;
+  readonly path: string;
+  readonly text?: string;
 }
 
 interface Props {
