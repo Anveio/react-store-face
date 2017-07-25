@@ -15,17 +15,6 @@ interface TabDescriptor {
   readonly panelID?: string;
 }
 
-const tabs: TabDescriptor[] = [
-  {
-    id: 'inventory',
-    title: 'Inventory'
-  },
-  {
-    id: 'cart',
-    title: 'Cart'
-  }
-];
-
 export default class Home extends React.PureComponent<{}, State> {
   readonly state = {
     cart: new Map<Item, number>(),
@@ -49,12 +38,25 @@ export default class Home extends React.PureComponent<{}, State> {
     });
   };
 
+  tabInformation = (): TabDescriptor[] => [
+    {
+      id: 'inventory',
+      title: 'Inventory'
+    },
+    {
+      id: 'cart',
+      title: `Cart (${this.state.cart.size})`
+    }
+  ];
+
   tabComponentLookup = () => {
-    switch (this.state.currentTabIndex) {
+    const { currentTabIndex, cart } = this.state;
+
+    switch (currentTabIndex) {
       case 0:
         return <Inventory handleAddToCart={this.addToCart} />;
       case 1:
-        return <Cart cart={this.state.cart} onBrowse={this.changeTab} />;
+        return <Cart cart={cart} onBrowse={this.changeTab} />;
       default:
         return;
     }
@@ -64,7 +66,7 @@ export default class Home extends React.PureComponent<{}, State> {
     return (
       <Page title="Catch of the Day">
         <Tabs
-          tabs={tabs}
+          tabs={this.tabInformation()}
           selected={this.state.currentTabIndex}
           onSelect={this.changeTab}
         />
