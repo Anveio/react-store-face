@@ -11,7 +11,7 @@ interface State {
 }
 
 interface Props {
-  handleAddToCart: (item: CartItem) => void;
+  handleAddToCart: (item: CartEntry<Fish>) => void;
 }
 
 export default class Inventory extends React.Component<Props, State> {

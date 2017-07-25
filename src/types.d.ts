@@ -8,7 +8,8 @@ interface Fish {
   imageSrc: string;
 }
 
-interface CartItem {
-  fish: Fish;
-  quantity: number;
+interface CartEntry<T extends Item> {
+  item: T;
 }
+
+type Item = Fish;

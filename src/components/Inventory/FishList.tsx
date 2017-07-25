@@ -4,7 +4,7 @@ import { ResourceList } from '@shopify/polaris';
 
 export interface Props {
   fishes: Fish[];
-  addToCart: (item: CartItem) => void;
+  addToCart: (item: CartEntry<Fish>) => void;
 }
 
 const FishList = ({ fishes, addToCart }: Props) => {
@@ -12,7 +12,7 @@ const FishList = ({ fishes, addToCart }: Props) => {
     <ResourceList
       items={fishes}
       renderItem={(fish: Fish, index: number) => {
-        return <FishCard fish={fish} primaryAction={addToCart} />;
+        return <FishCard fish={fish} onAddToCart={addToCart} />;
       }}
     />
   );

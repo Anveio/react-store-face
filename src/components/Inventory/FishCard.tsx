@@ -5,19 +5,16 @@ import { formatPrice } from '../../utils';
 
 export interface Props {
   fish: Fish;
-  primaryAction: (item: CartItem) => void;
+  onAddToCart: (item: CartEntry<Fish>) => void;
 }
 
-const FishCard = ({ fish, primaryAction }: Props) => {
+const FishCard = ({ fish, onAddToCart }: Props) => {
   const { name, price, imageSrc, description, status } = fish;
 
   const available = status === 'Available' ? true : false;
 
   const onPrimaryAction = () => {
-    primaryAction({
-      fish,
-      quantity: 1
-    });
+    onAddToCart({ item: fish });
   };
 
   const addAction = {

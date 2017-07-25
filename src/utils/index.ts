@@ -96,4 +96,13 @@ const getFunName = () => {
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 };
 
-export { formatPrice, slugify, getFunName, sampleData };
+const cartListFromMap = (input: Map<CartEntry<Fish>, number>): CartEntry<Item>[] => {
+  return Array.from(input.keys()).map((el: CartEntry<Item>) => {
+    return {
+      item: el.item,
+      quantity: 1
+    };
+  });
+};
+
+export { formatPrice, slugify, getFunName, sampleData, cartListFromMap };

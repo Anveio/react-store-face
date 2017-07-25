@@ -29,7 +29,7 @@ export default class AddFishForm extends React.Component<Props, Fish> {
 
   createFish = () => {
     this.props.onNewFish(this.state);
-    this.setState(() => {
+    this.setState((): Partial<Fish> => {
       return {
         name: '',
         price: 0,
