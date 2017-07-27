@@ -54,7 +54,7 @@ export default class Inventory extends React.Component<Props, State> {
 
   public render() {
     return (
-      <Layout.AnnotatedSection title="Inventory">
+      <Layout sectioned>
         <Stack vertical={true}>
           {this.state.formActive
             ? this.formActiveMarkup()
@@ -64,7 +64,7 @@ export default class Inventory extends React.Component<Props, State> {
             addToCart={this.props.handleAddToCart}
           />
         </Stack>
-      </Layout.AnnotatedSection>
+      </Layout>
     );
   }
 }

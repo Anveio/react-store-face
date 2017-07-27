@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FishCard from './FishCard';
-import { ResourceList } from '@shopify/polaris';
+import { Stack, ResourceList } from '@shopify/polaris';
 
 export interface Props {
   readonly fishes: Fish[];
@@ -9,12 +9,15 @@ export interface Props {
 
 const FishList = ({ fishes, addToCart }: Props) => {
   return (
-    <ResourceList
-      items={fishes}
-      renderItem={(fish: Fish, index: number) => {
-        return <FishCard fish={fish} onAddToCart={addToCart} />;
-      }}
-    />
+    <Stack distribution="fillEvenly" >
+
+      <ResourceList
+        items={fishes}
+        renderItem={(fish: Fish, index: number) => {
+          return <FishCard fish={fish} onAddToCart={addToCart} />;
+        }}
+      />
+    </Stack>
   );
 };
 
