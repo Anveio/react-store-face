@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout, EmptyState } from '@shopify/polaris';
-import ItemList from './CartList';
+import ItemList from './ItemList';
 
 import { cartListFromMap } from '../../utils';
 
