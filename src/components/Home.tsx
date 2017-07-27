@@ -50,10 +50,7 @@ export default class Home extends React.PureComponent<{}, State> {
 
   private readonly changeTab = (tabIndex: number) => {
     this.setState((prevState: State): Partial<State> => {
-      return {
-        ...prevState,
-        currentTabIndex: tabIndex
-      };
+      return { currentTabIndex: tabIndex };
     });
   };
 
